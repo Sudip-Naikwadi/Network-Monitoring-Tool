@@ -1,0 +1,69 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0xb6b6506a, pid=3935, tid=0x61eaeb40
+#
+# JRE version: OpenJDK Runtime Environment (8.0_121-b13) (build 1.8.0_121-8u121-b13-0ubuntu1.16.10.2-b13)
+# Java VM: OpenJDK Server VM (25.121-b13 mixed mode linux-x86 )
+# Problematic frame:
+# V  [libjvm.so+0x53506a]  jni_invoke_nonstatic(JNIEnv_*, JavaValue*, _jobject*, JNICallType, _jmethodID*, JNI_ArgumentPusher*, Thread*) [clone .constprop.70]+0x1aa
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x663dc400):  JavaThread "Thread-4" [_thread_in_native, id=3998, stack(0x61e5e000,0x61eaf000)]
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 1 (SEGV_MAPERR), si_addr: 0x00000004
+
+Registers:
+EAX=0x00000000, EBX=0x61eade10, ECX=0x61eadd1c, EDX=0x61eadd24
+ESP=0x61eadcc8, EBP=0x61eaddc8, ESI=0x61eadd40, EDI=0xb7148000
+EIP=0xb6b6506a, EFLAGS=0x00010246, CR2=0x00000004
+
+Top of Stack: (sp=0x61eadcc8)
+0x61eadcc8:   61eaddc8 b6b64f2c 082b0a30 00000001
+0x61eadcd8:   663dc400 62291050 6638612c 61eadd24
+0x61eadce8:   66386000 61eadd68 663296a0 b6b70700
+0x61eadcf8:   66386564 61eadd1c 61eaddf4 61eade10
+0x61eadd08:   b7148000 66386000 61eadd28 00000000
+0x61eadd18:   00000000 00000000 66386000 00000000
+0x61eadd28:   00000000 663884d8 663296a0 663296a8
+0x61eadd38:   66329a94 000003ec 62290560 b76e6655 
+
+Instructions: (pc=0xb6b6506a)
+0xb6b6504a:   8d 85 5c ff ff ff 50 89 85 1c ff ff ff e8 d4 6e
+0xb6b6505a:   d6 ff 8b 85 5c ff ff ff 8b bd 40 ff ff ff 5a 59
+0xb6b6506a:   8b 40 04 89 fb 0f b7 50 1c 8b 40 08 ff 74 90 2c
+0xb6b6507a:   56 e8 d0 81 2c 00 8d 87 2c f5 fb ff c7 45 98 00 
+
+Register to memory mapping:
+
+EAX=0x00000000 is an unknown value
+EBX=0x61eade10 is pointing into the stack for thread: 0x663dc400
+ECX=0x61eadd1c is pointing into the stack for thread: 0x663dc400
+EDX=0x61eadd24 is pointing into the stack for thread: 0x663dc400
+ESP=0x61eadcc8 is pointing into the stack for thread: 0x663dc400
+EBP=0x61eaddc8 is pointing into the stack for thread: 0x663dc400
+ESI=0x61eadd40 is pointing into the stack for thread: 0x663dc400
+EDI=0xb7148000: <offset 0xb18000> in /usr/lib/jvm/java-8-openjdk-i386/jre/lib/i386/server/libjvm.so at 0xb6630000
+
+
+Stack: [0x61e5e000,0x61eaf000],  sp=0x61eadcc8,  free space=319k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x53506a]  jni_invoke_nonstatic(JNIEnv_*, JavaValue*, _jobject*, JNICallType, _jmethodID*, JNI_ArgumentPusher*, Thread*) [clone .constprop.70]+0x1aa
+V  [libjvm.so+0x537905]  jni_CallVoidMethod+0xe5
+C  [libjpcap.so+0x54fb]  get_packet+0x591
+C  [libjpcap.so+0x4850]  Java_jpcap_JpcapCaptor_getPacket+0x117
+J 1629  jpcap.JpcapCaptor.getPacket()Ljpcap/packet/Packet; (0 bytes) @ 0xa75e01a4 [0xa75e0120+0x84]
+j  network.monitoring.tool.Athread.run()V+49
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+V  [libjvm.so+0x51c54d]  JavaCalls::call_helper(JavaValue*, methodHandle*, JavaCallArguments*, Thread*)+0xd3d
+V  [libjvm.so+0x51a0d0]  JavaCalls::call_virtual(JavaValue*, KlassHandle, Symbol*, Symbol*, JavaCallArguments*, Thread*)+0x240
