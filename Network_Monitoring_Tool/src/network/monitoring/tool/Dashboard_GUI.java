@@ -43,9 +43,7 @@ public class Dashboard_GUI extends javax.swing.JFrame {
         } catch (Exception e) {
             Dashboard_GUI.connStatus.setForeground(Color.red);
             Dashboard_GUI.connStatus.setText("Disconnected");
-            this.ConStatus = "NOTCONNECTED";
-             //JOptionPane.showMessageDialog(null, "in constructor  ");
-            t=new Status_thread();
+             t=new Status_thread();
              t.start();
         }
         
@@ -53,9 +51,6 @@ public class Dashboard_GUI extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         HnameLeb = new javax.swing.JLabel();
@@ -267,30 +262,10 @@ public void SetDisconnected()
 
 @Override
     public void run() {
-
-        /*  try {
-            int timeout = 200;
-            InetAddress[] addresses = InetAddress.getAllByName("www.google.com");
-            for (InetAddress address : addresses) {
-                if (address.isReachable(timeout)) {
-                    
-                    Dashboard_GUI.connStatus.setForeground(Color.green);
-                    Dashboard_GUI.connStatus.setText("Connected");
-                } else {
-                    Dashboard_GUI.connStatus.setForeground(Color.red);
-                    Dashboard_GUI.connStatus.setText("Disconnected");
-                }
-            }
-        } catch (Exception e) {
-           System.out.println("Excecption:" + e);
-            Dashboard_GUI.connStatus.setForeground(Color.red);
-             Dashboard_GUI.connStatus.setText("Disconnected");
-        }*/
-        
+          
         Process p;
         String s, temp[], getway = null;
-       //  System.out.println("line: Fail");
-        while(true){
+         while(true){
         try {
             p = Runtime.getRuntime().exec("netstat -rn");
             BufferedReader br = new BufferedReader(
@@ -301,9 +276,6 @@ public void SetDisconnected()
                     getway = temp[1];
                 }
                     }
-            //         System.out.println("line: " + getway);
-            //       System.out.println(InetAddress.getByName(getway).isReachable(300));
-
             p.waitFor();
             p.destroy();
            if(getway==null)
