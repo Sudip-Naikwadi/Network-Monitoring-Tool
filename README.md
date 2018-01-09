@@ -9,6 +9,6 @@
   
   For run this application you need to install following libraries in your ubuntu machine
   
-  *JPCap(.deb is added in files)
-  *LibCap
-  *nbtscan
+  * JPCap(.deb is added in files)
+  * LibCap
+  * nbtscan
