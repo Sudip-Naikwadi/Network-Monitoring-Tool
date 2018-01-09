@@ -1,35 +1,25 @@
 
 package network.monitoring.tool;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import javax.swing.table.DefaultTableModel;
-
-
 public class Get_Devices_UI extends javax.swing.JFrame {
-    
-Sthread thread;
+ Sthread thread;
     public Get_Devices_UI() {
         initComponents();
         thread=new Sthread();
     }
-
     class Sthread extends Thread{
          int i;
          DefaultTableModel model;
         Sthread()
-        {
-            
+        {           
            model = (DefaultTableModel) DevTable.getModel();
         }
     public void run()
     {
        String s,s1,temp[];
-        // ArrayList<node> list=new ArrayList<node>();
-   
-
-   
-        Process p;
+              Process p;
         try {
            for(int i=1;i<150;i++){
                int j=0;
@@ -38,24 +28,17 @@ Sthread thread;
                 new InputStreamReader(p.getInputStream()));
             while ((s = br.readLine()) != null)
             {
-                 if(s.startsWith("192.168.3."+i))
+                if(s.startsWith("192.168.3."+i))
                  {
-                     //System.out.println("line: " + s);
-                temp=s.split(" +");
-             //   node n=new node(temp[0],temp[1],temp[4]);
-             String[] row = {temp[0],temp[1],temp[4]};
+                  temp=s.split(" +");
+                  String[] row = {temp[0],temp[1],temp[4]};
               model.addRow(row);
-                              
-                //for(int j=0;j<temp.length;j++)
-                //System.out.println("line: " +temp[j]);
-                 }
+                   }
               System.out.println("line: " + s);
             }
             p.waitFor();
-            //System.out.println ("exit: " + p.exitValue());
             p.destroy();
-           // System.out.println("and i is:"+this.i);
-        }
+           }
         } catch (Exception e) {}
     
     }
