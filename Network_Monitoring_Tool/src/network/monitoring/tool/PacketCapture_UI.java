@@ -1,5 +1,4 @@
 package network.monitoring.tool;
-
 import java.awt.Color;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -24,7 +23,6 @@ import jpcap.packet.ICMPPacket;
 import jpcap.packet.Packet;
 import jpcap.packet.TCPPacket;
 import jpcap.packet.UDPPacket;
-
 public class PacketCapture_UI extends javax.swing.JFrame {
   Athread rc;
  Thread t ;
@@ -32,8 +30,7 @@ public class PacketCapture_UI extends javax.swing.JFrame {
  public static String TState; 
  public static int DevIndex;
  public Date date;
- 
-    public PacketCapture_UI()throws Exception {
+     public PacketCapture_UI()throws Exception {
         initComponents();
           pklist = new ArrayList<Packet>();
          GetInterfaceList();
@@ -43,7 +40,7 @@ public class PacketCapture_UI extends javax.swing.JFrame {
     }
  public void startCapture()throws Exception
     {
-           t = new Thread(rc);
+   t = new Thread(rc);
           if(TState.equals("NEW"))
          {
        CapStatus.setForeground(Color.green);
@@ -60,8 +57,7 @@ public class PacketCapture_UI extends javax.swing.JFrame {
      {
          CapStatus.setForeground(Color.red);
               CapStatus.setText("Capturing Stopped...");
-      // this.t.suspend();
-      t.stop();
+          t.stop();
           }
     
      public String getFileName()
@@ -72,7 +68,6 @@ public class PacketCapture_UI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         TitleLeb = new javax.swing.JLabel();
         InterfaceLeb = new javax.swing.JLabel();
         InterfaceList = new javax.swing.JComboBox<>();
@@ -360,17 +355,11 @@ public class PacketCapture_UI extends javax.swing.JFrame {
     private void SavePacBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SavePacBtnActionPerformed
       
       try {
-          //this.t.suspend();
-          //t=null;
-          //System.gc();
-          this.savePackets();
+           this.savePackets();
       } catch (Exception ex) {
           Logger.getLogger(PacketCapture_UI.class.getName()).log(Level.SEVERE, null, ex);
-      }
-        
-        
+      }               
     }//GEN-LAST:event_SavePacBtnActionPerformed
-
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
        t.suspend();
         this.dispose();
@@ -421,7 +410,6 @@ public class PacketCapture_UI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-
      public void savePackets()throws Exception
      {
          
@@ -449,11 +437,8 @@ public class PacketCapture_UI extends javax.swing.JFrame {
           JOptionPane.showMessageDialog(null,"Saved in:"+path);
          
         }
-     }   
-     
-    
+     }     
     public void GetInterfaceList() {
-
         NetworkInterface[] devices = JpcapCaptor.getDeviceList();
         String[] str = new String[devices.length];
         for (int i = 0; i < devices.length; i++) {
@@ -466,7 +451,6 @@ public class PacketCapture_UI extends javax.swing.JFrame {
 }
 
 class Athread  implements Runnable {
-
      boolean flag;
     Thread t1;
     Packet pk;
@@ -480,8 +464,7 @@ class Athread  implements Runnable {
         ICMPlist = new ArrayList<ICMPPacket>();
         ARPlist = new ArrayList<ARPPacket>();
         TCPlist = new ArrayList<TCPPacket>();
-      
-      t1 = new Thread(this);
+            t1 = new Thread(this);
       flag=true;
       TCPc = UDPc =  ARPc =  ICMPc =  Packetc =  OtherPac = 0;
       
@@ -495,23 +478,15 @@ class Athread  implements Runnable {
         {
         JOptionPane.showMessageDialog(null,"Error In Getting Devices\n OR Your Are Not Connected To Network!\n(Check your Network Setting)");
         }
-   try {
-            
+   try {            
             while (flag) {
-                                 
+                              
                 pk = cap.getPacket();
-               // System.out.println("Thread running ");
-                 /*System.out.println("packet count:"+Packetc);
-                  System.out.println("arp count:"+ARPc);
-                   System.out.println("tcp count:"+TCPc);
-                    System.out.println("udp count:"+UDPc);*/
                  if (pk != null) {
-                       
-                        PacketCapture_UI.PacketDetails.append(pk + "\r\n");
+                       PacketCapture_UI.PacketDetails.append(pk + "\r\n");
                          PacketCapture_UI.pklist.add(pk);
                          Packetc++;
-                         
-                           if (pk instanceof UDPPacket) {
+                         if (pk instanceof UDPPacket) {
                     UDPPacket udp = (UDPPacket) (pk);
                     UDPlist.add(udp);
                     UDPc++;
@@ -539,21 +514,7 @@ class Athread  implements Runnable {
                          
                          
                  }
-               
-              
-                /* if(pklist.size()==1000)
-                        {
-                            TCPlist.clear();
-                            UDPlist.clear();
-                            ICMPlist.clear();
-                            ARPlist.clear();
-                            pklist.clear();
-                            
-                        }*/
-              //  super.TotalPacCount.setText(String.valueOf(Packetc));
-                  
-              
-                    
+                               
                PacketCapture_UI.ARPPacCount.setText(ARPc+" ");
                 PacketCapture_UI.OtherPacCount.setText(OtherPac+" ");
                PacketCapture_UI.TotalPacCount.setText(Packetc+" ");
