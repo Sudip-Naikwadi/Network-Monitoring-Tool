@@ -7,8 +7,6 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 public class Reachability_UI extends javax.swing.JFrame {
-
-  
     public Reachability_UI() {
        
         initComponents();
@@ -28,15 +26,13 @@ public class Reachability_UI extends javax.swing.JFrame {
             +address.getHostAddress()+"\nReachabiliy Status:"+address.isReachable(3000);
      JOptionPane.showMessageDialog(null,res);
    }
-    
-    }catch(Exception e)
+      }catch(Exception e)
     {
         JOptionPane.showMessageDialog(null,"Entered Web address is not reachable!");
       System.out.println(e);  
     }
     }
- 
-  public void IPAddressReach(String ip,String name)
+   public void IPAddressReach(String ip,String name)
     {
         try{
     InetAddress address = InetAddress.getByName(ip);
