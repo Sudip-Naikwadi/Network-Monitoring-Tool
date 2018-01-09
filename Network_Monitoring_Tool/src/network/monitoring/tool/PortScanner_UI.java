@@ -1,23 +1,16 @@
 
 package network.monitoring.tool;
-
 import java.net.Socket;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
-
-
 public class PortScanner_UI extends javax.swing.JFrame {
-
- 
     public PortScanner_UI() {
         initComponents();
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         TitleLeb = new javax.swing.JLabel();
         HIPnameLeb = new javax.swing.JLabel();
         HIPnameText = new javax.swing.JTextField();
@@ -193,10 +186,11 @@ public class PortScanner_UI extends javax.swing.JFrame {
             host=HIPnameText.getText();
             start=Integer.parseInt(StartPortText.getText());
              end=Integer.parseInt(EndPortText.getText());
+		//IP validation Regx
              String regx="^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
 					"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
 			"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
-			"([01]?\\d\\d?|2[0-4]\\d|25[0-5])$)";//|^([a-zA-Z]([0-9])+)";
+			"([01]?\\d\\d?|2[0-4]\\d|25[0-5])$)";
         Pattern p = Pattern.compile(regx);
 		Matcher m = p.matcher(host);
                 if(!m.matches())
@@ -224,22 +218,8 @@ public class PortScanner_UI extends javax.swing.JFrame {
                     (new scan(host,k)).start();
             }
         }
-            
-            
-            
-        
-        
+       
     }//GEN-LAST:event_ScanBtnActionPerformed
-
-  /*  public static void main(String args[]) {
-    
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PortScanner_UI().setVisible(true);
-            }
-        });
-    }*/
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BackBtn;
     public javax.swing.JLabel EndPortLeb;
@@ -267,16 +247,11 @@ public class PortScanner_UI extends javax.swing.JFrame {
         }
         public void run()
         {
-               try
-			   {
+               try   {
 			       Socket s=new Socket(hn,p);
-			       OpenPortsText.append("Port "+p+" is open\n");//setText(OpenPortsText.getText()+);
+			       OpenPortsText.append("Port "+p+" is open\n");
 			 }catch(Exception e){
-                         //System.out.println(e);
                          }
          }
     }
-
-
-
 }
